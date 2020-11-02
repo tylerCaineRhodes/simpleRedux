@@ -1,0 +1,15 @@
+
+.counter {
+  position: absolute;
+  top: 30%;
+  left: 50%;  
+  text-align: center;
+  font-size: larger;
+}
+
+.counter button {
+  height: 3em;
+  width: 3em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
