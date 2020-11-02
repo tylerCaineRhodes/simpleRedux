@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import './counter.css'
-
 import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
   return {
-    count: state.count
-  }
+    count: state.count,
+  };
 }
 
-
-
 class Counter extends Component {
- 
   increment = () => {
     this.props.dispatch({ type: 'increment' })
   }
@@ -34,7 +30,5 @@ class Counter extends Component {
     )
   }
 }
-
-
 
 export default connect(mapStateToProps)(Counter);

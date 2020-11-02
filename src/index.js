@@ -5,9 +5,7 @@ import * as serviceWorker from './serviceWorker';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
-let initialState = {
-  count: 0
-}
+const initialState = { count: 0 }
 
 function reducer(state = initialState, action) {
   switch(action.type) {
@@ -23,13 +21,11 @@ function reducer(state = initialState, action) {
       return state;
   }
 }
+
 const store = createStore(
   reducer, 
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
-
-//add dev tools
-//window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 
 ReactDOM.render(
   <Provider store={ store }>
@@ -38,4 +34,5 @@ ReactDOM.render(
 
   document.getElementById('root')
 );
+
 serviceWorker.unregister();
