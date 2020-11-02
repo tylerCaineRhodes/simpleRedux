@@ -2,34 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Counter from './components/Counter';
 import * as serviceWorker from './serviceWorker';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
+import { createStore, combineReducers } from 'redux';
+import { Provider, } from 'react-redux';
+import counter, { randomValueAddedToState } from './countReducer';
 
-let initialState = {
-  count: 0
-}
+const rootReducer = combineReducers({
+  counter,
+  randomValueAddedToState,
+});
 
-function reducer(state = initialState, action) {
-  switch(action.type) {
-    case 'increment':
-      return {
-        count: state.count + 1
-      }
-    case 'decrement':
-      return {
-        count: state.count - 1
-      }
-    default:
-      return state;
-  }
-}
 const store = createStore(
-  reducer, 
+  rootReducer,
+  //add dev tools
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-)
+);
 
-//add dev tools
-//window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+console.log('here is the initial state --> ', store.getState())
 
 ReactDOM.render(
   <Provider store={ store }>

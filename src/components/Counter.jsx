@@ -1,40 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './counter.css'
 
 import { connect } from 'react-redux';
 
-function mapStateToProps(state) {
-  return {
-    count: state.count
+const mapStateToProps = (state) => ({
+  count: state.counter
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  increment: () => {
+    dispatch({type: 'increment'})
+  },
+  decrement: () => {
+    dispatch({type: 'decrement'})
   }
+})
+
+const Counter = (props) => {
+  return (
+    <div className='counter'>
+      <h2>Counter</h2>
+        <div>
+          <button onClick={props.decrement}>-</button>
+          <span>{props.count}</span>
+          <button onClick={props.increment}>+</button>
+        </div>
+    </div>
+  )
 }
 
-
-
-class Counter extends Component {
- 
-  increment = () => {
-    this.props.dispatch({ type: 'increment' })
-  }
-
-  decrement = () => {
-    this.props.dispatch({type: 'decrement'})
-  }
-
-  render() {
-    return (
-      <div className='counter'>
-        <h2>Counter</h2>
-          <div>
-            <button onClick={this.decrement}>-</button>
-            <span>{this.props.count}</span>
-            <button onClick={this.increment}>+</button>
-          </div>
-      </div>
-    )
-  }
-}
-
-
-
-export default connect(mapStateToProps)(Counter);
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);
